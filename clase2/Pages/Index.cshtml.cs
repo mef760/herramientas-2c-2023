@@ -16,6 +16,7 @@ public class IndexModel : PageModel
     public string Mail { get; set; }
     [Range(18, 99)]
     public int Age { get; set; }
+    [Required]
     public string Telephone { get; set; }
     public IndexModel(ILogger<IndexModel> logger)
     {
