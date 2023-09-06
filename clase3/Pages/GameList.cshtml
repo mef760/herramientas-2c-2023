@@ -1,0 +1,30 @@
+﻿@page
+@model clase3.Pages.GameListModel
+@{
+}
+
+<h2>Lista de video juegos</h2>
+
+<form method="post">
+  <div class="mb-3">
+    <label asp-for="NewGame.Name" class="form-label"></label>
+    <input class="form-control" asp-for="NewGame.Name">
+  </div>
+  <div class="mb-3">
+     <label asp-for="NewGame.Year" class="form-label"></label>
+    <input class="form-control" asp-for="NewGame.Year">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Agregar</button>
+</form>
+
+<ol>
+    @foreach(var game in Model.Games)
+    {
+        <li>@game.Name 
+            <form method="post" asp-page-handler="Delete" asp-route-name="@game.Name">
+                <button class="btn btn-danger">Delete</button>
+            </form>
+        </li>
+    }
+</ol>
