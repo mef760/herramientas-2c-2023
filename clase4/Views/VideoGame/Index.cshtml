@@ -1,0 +1,10 @@
+@model List<GameListViewModel>
+<h2>Esta es la vista index de video game</h2>
+
+@{
+    if(Model != null){
+        foreach(var item in Model){
+            <div>@item.Name - lanzamiento: @item.Release - antiguedad: @item.Age</div>
+        }
+    }
+}
