@@ -1,0 +1,76 @@
+@model clase7.ViewModels.GameListVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form method="get" asp-action="Index" asp-controller="Game">
+    <div class="col-6 form-group mb-2">
+        <input class="form-control" asp-for="Filter">
+    </div> 
+    <button class="btn btn-primary" type="submit">Buscar</button>
+
+
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Games[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Games[0].Release)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Games[0].Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Games[0].Company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Games[0].Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Games[0].Stock)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Games) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Release)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                <a asp-action="Purchase" asp-route-id="@item.Id">Purchase</a> |
+                <a asp-action="Sale" asp-route-id="@item.Id">Sale</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
