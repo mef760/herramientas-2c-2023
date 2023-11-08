@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using clase7.Models;
 using clase7.ViewModels;
 using clase7.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace clase7.Controllers
 {
+    [Authorize]
     public class GameController : Controller
     {
         private readonly IGameService _gameService;

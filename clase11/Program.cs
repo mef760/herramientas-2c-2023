@@ -1,9 +1,13 @@
 using clase7.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<VideoGameContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("VideoGameContext") ?? throw new InvalidOperationException("Connection string 'VideoGameContext' not found.")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => 
+options.SignIn.RequireConfirmedAccount = true)
+.AddEntityFrameworkStores<VideoGameContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -24,9 +28,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
 app.UseAuthorization();
-
+app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

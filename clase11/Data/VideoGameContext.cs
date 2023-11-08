@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using clase7.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-    public class VideoGameContext : DbContext
+public class VideoGameContext : IdentityDbContext
     {
         public VideoGameContext (DbContextOptions<VideoGameContext> options)
             : base(options)
